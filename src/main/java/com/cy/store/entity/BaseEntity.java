@@ -2,16 +2,17 @@ package com.cy.store.entity;
 
 /*实体类的基类 Serizlizable进行序列化方便流传输*/
 
-import javax.xml.crypto.Data;
+
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 
 public class BaseEntity implements Serializable {
     private String createdUser;
     private String modifiedUser;
-    private Data createdTime;
-    private Data modifiedTime;
+    private Date createdTime;
+    private Date modifiedTime;
 
     public String getCreatedUser() {
         return createdUser;
@@ -29,20 +30,20 @@ public class BaseEntity implements Serializable {
         this.modifiedUser = modifiedUser;
     }
 
-    public Data getCreatedTime() {
-        return createdTime;
+    public Date getCreatedTime() {
+        return (Date) createdTime;
     }
 
-    public void setCreatedTime(Data createdTime) {
-        this.createdTime = createdTime;
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = (Date) createdTime;
     }
 
-    public Data getModifiedTime() {
-        return modifiedTime;
+    public Date getModifiedTime() {
+        return (Date) modifiedTime;
     }
 
-    public void setModifiedTime(Data modifiedTime) {
-        this.modifiedTime = modifiedTime;
+    public void setModifiedTime(Date modifiedTime) {
+        this.modifiedTime = (Date) modifiedTime;
     }
 
     @Override

@@ -10,8 +10,9 @@ import java.sql.SQLException;
 @SpringBootTest
 class StoreApplicationTests {
 
-	@Autowired //spring自动依赖注入
+	@Autowired //自动装配
 	private DataSource dataSource;
+
 	@Test
 	void contextLoads() {
 	}
@@ -19,7 +20,5 @@ class StoreApplicationTests {
 	@Test
 	void getConnection() throws SQLException {
 		System.out.println(dataSource.getConnection());
-
 	}
-
 }
