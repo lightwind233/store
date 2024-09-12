@@ -43,4 +43,17 @@ public class UserServiceTests {
         }
     }
 
+    @Test
+    public void login() {
+        try {
+            User user = userService.login("light01", "123456");
+            System.out.println(user);
+        } catch (ServiceException e) {
+            //获取类名字
+            System.out.println(e.getClass().getSimpleName());
+            //获取失败信息
+            System.out.println();
+        }
+    }
+
 }

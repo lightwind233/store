@@ -4,7 +4,9 @@ import com.cy.store.entity.User;
 import com.cy.store.mapper.UserMapper;
 import com.cy.store.service.IUserService;
 import com.cy.store.service.ex.InsertException;
+import com.cy.store.service.ex.PasswordNotMatchException;
 import com.cy.store.service.ex.UsernameDuplicatedException;
+import com.cy.store.service.ex.UsernameNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
@@ -47,6 +49,26 @@ public class UserServicelmpl implements IUserService {
             throw new InsertException("注册时产生未知的异常");
         }
     }
+
+    @Override
+    public User login(String username, String password) {
+        User result = userMapper.findByUsername(username);
+        if(result==null){
+            throw new UsernameNotFoundException("用户名不存在");
+        }
+        String oldPassword = result.getPassword();
+        String salt = result.getSalt();
+        String md5Password = getMD5Password(password, salt);
+        if(!md5Password.equals(oldPassword)){
+            throw new PasswordNotMatchException("密码错误");
+        }
+        if(result.getIsDelete()==1){
+            throw new UsernameNotFoundException("用户名不存在");
+        }
+
+        return result;
+    }
+
     private String getMD5Password(String password,String salt){
         for(int i=0;i<3;i++)
         {

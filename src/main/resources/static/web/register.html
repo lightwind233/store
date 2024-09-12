@@ -138,6 +138,32 @@
 			</div>
 		</footer>
 		<!--页脚结束-->
+	<script type="text/javascript">
+		//监听注册按钮是否被点击
+		$("#btn-reg").click(function(){//发送ajax异步请求
+			$.ajax({
+				url:"/users/reg",
+				type:"POST",
+				data:$("#form-reg").serialize(),/*自动检测该表单的控件并且获取每个控件的值*/
+				dataType:"JSON",
+				success:function(json){
+					if(json.state==200){
+						alert("注册成功");
+						window.location.href="/web/login.html";
+					}else if(json.state==4000){
+						alert("用户名已被注册");
+						}else if(json.state==5000){
+						alert("服务器未响应");
+					}else {
+					alert("注册时产生未知错误");
+					}
+				},
+				error:function(xhr){
+					alert("注册时产生未知错误"+xhr.status);
+				}
+			});
+		});
+	</script>
 	</body>
 
 </html>
