@@ -138,32 +138,45 @@
 			</div>
 		</footer>
 		<!--页脚结束-->
-	<script type="text/javascript">
-		//监听注册按钮是否被点击
-		$("#btn-reg").click(function(){//发送ajax异步请求
-			$.ajax({
-				url:"/users/reg",
-				type:"POST",
-				data:$("#form-reg").serialize(),/*自动检测该表单的控件并且获取每个控件的值*/
-				dataType:"JSON",
-				success:function(json){
-					if(json.state==200){
-						alert("注册成功");
-						window.location.href="/web/login.html";
-					}else if(json.state==4000){
-						alert("用户名已被注册");
-						}else if(json.state==5000){
-						alert("服务器未响应");
-					}else {
-					alert("注册时产生未知错误");
-					}
-				},
-				error:function(xhr){
-					alert("注册时产生未知错误"+xhr.status);
-				}
-			});
-		});
-	</script>
+
+        <script>
+            //1.监听注册按钮是否被点击,如果被点击可以执行一个方法(这里不能像ajax函数那样删去function()只留下{},这是官方规定的!)
+            $("#btn-reg").click(function () {
+
+                //let username = $("#username").val();
+                //let pwd = $("#password").val();
+                //上面这两行是动态获取表单中控件的数据,但是如果这样获取的话ajax函数中
+                //就是data: "username="+username + "&password="+pwd,但太麻烦了,如
+                // 果这个表单提交的是用户的兴趣爱好,那数据就很多了,一个表单20个数据都很正
+                // 常,如果此时还用这种方式就太麻烦了,所以不建议用这种方式
+
+                //2.发送ajax()的异步请求来完成用户的注册功能
+                $.ajax({
+                    url: "/users/reg",
+                    type: "POST",
+
+                    //serialize这个API会自动检测该表单有什么控件,每个控件检测后还会获取每个控
+                    // 件的值,拿到这个值后并自动拼接成形如username=Tom&password=123的结构
+                    data: $("#form-reg").serialize(),
+
+                    dataType: "JSON",
+                    success: function (json) { //1.js是弱数据类型,这个地方不用声明json的数据类型
+                        //2.如果服务器成功响应就会将返回的数据传给形参,比如{state: 4000,message: "用户名
+                        // 已经被占用",data: null}
+                        if (json.state == 200) {
+                            alert("注册成功")
+                        } else {
+                            alert("注册失败")
+                        }
+                    },
+                    error: function (xhr) { //如果问题不在可控范围内,服务器就不会返回自己定
+                        //义的json字符串:{state: 4000,message: "用户名已经被占用",data: null}
+                        //而是返回一个XHR类型的对象,该对象也有一个状态码名字是status
+                        alert("注册时产生未知的错误!"+xhr.status);
+                    }
+                });
+            });
+        </script>
 	</body>
 
 </html>

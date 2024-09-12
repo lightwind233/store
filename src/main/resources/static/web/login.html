@@ -143,26 +143,41 @@
 			</div>
 		</footer>
 		<!--页脚结束-->
-	<script type="text/javascript">
-		$("#btn-login").click(function(){
-			$.ajax({
-				url:"/users/login",
-				type:"POST",
-				data:$("#form-login").serialize(),/*自动检测该表单的控件并且获取每个控件的值*/
-				dataType:"JSON",
-				success:function(json){
-					if(json.state==200){
-						window.location.href="../web/index.html";
-					}else{
-						alert("登录失败");
-					}
 
-				},
-				error: function(xhr){
-					alert("登录时产生未知错误"+xhr.message);
-				}
-			});
-		});
-	</script>
+        <script>
+            $("#btn-login").click(function () {
+                $.ajax({
+                    url: "/users/login",
+                    type: "POST",
+                    data: $("#form-login").serialize(),
+                    dataType: "JSON",
+                    success: function (json) {
+                        if (json.state == 200) {
+
+							sessionStorage.setItem("username",json.data.username);
+                            //alert("登录成功")
+                            //跳转到系统主页index.html
+                            //index和login在同一个目录结构下,所以可以用相对路
+                            // 径index.html来确定跳转的页面,index.html和./ind
+                            // ex.html完全一样,因为./就是表示当前目录
+                            // 结构,也可以用../web/index.html
+                            location.href = "index.html";
+                            $.cookie("avatar",json.data.avatar,{expires: 7});
+
+
+                        } else {
+                            alert("登录失败")
+                        }
+                    },
+                    error: function (xhr) {
+                        //xhr.message可以获取未知异常的信息
+                        alert("登录时产生未知的异常!"+xhr.message);
+                    }
+                });
+
+            });
+
+        </script>
+
 	</body>
 </html>

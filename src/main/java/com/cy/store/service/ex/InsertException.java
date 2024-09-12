@@ -1,6 +1,6 @@
 package com.cy.store.service.ex;
 
-/*数据插入时产生的异常*/
+/**数据插入过程中产生异常*/
 public class InsertException extends ServiceException{
     public InsertException() {
         super();
