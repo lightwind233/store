@@ -19,8 +19,8 @@
 		<link rel="stylesheet" type="text/css" href="../css/layout.css" />
 		<link rel="stylesheet" type="text/css" href="../css/top.css" />
 		<link rel="stylesheet" type="text/css" href="../css/footer.css" />
-		<link rel="stylesheet" type="text/css" href="../css/orderConfirm.css" />
-		<script src="../js/orderConfirm.js" type="text/javascript" charset="utf-8"></script>
+		<!--<script type="text/javascript" src="../js/distpicker.data.js"></script>-->
+		<!--<script type="text/javascript" src="../js/distpicker.js"></script>-->
 		<script>
 			window.onload = function() {
 				let username= sessionStorage.getItem('username');
@@ -34,45 +34,45 @@
 	</head>
 
 	<body>
-	<!--头部-->
-	<header class="header">
-		<!--电脑商城logo-->
-		<div class="row">
-			<div class="col-md-3">
-				<a href="index.html">
-					<img src="../images/index/stumalllogo.png" />
-				</a>
-			</div>
-			<!--快捷选项-->
-			<div class="col-md-9 top-item">
-				<ul class="list-inline pull-right">
+		<!--头部-->
+		<header class="header">
+			<!--电脑商城logo-->
+			<div class="row">
+				<div class="col-md-3">
+					<a href="index.html">
+						<img src="../images/index/stumalllogo.png" />
+					</a>
+				</div>
+				<!--快捷选项-->
+				<div class="col-md-9 top-item">
+					<ul class="list-inline pull-right">
 
-					<li><a href="orders.html"><span class="fa fa-file-text"></span>&nbsp;订单</a></li>
-					<li class="li-split">|</li>
-					<li><a href="cart.html"><span class="fa fa-cart-plus"></span>&nbsp;购物车</a></li>
-					<li class="li-split">|</li>
-					<li>
-						<!--下列列表按钮 ：管理-->
-						<div class="btn-group">
-							<button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
-								<span id="top-dropdown-btn"><span class="fa fa-gears"></span>&nbsp;管理 <span class="caret"></span></span>
-							</button>
-							<ul class="dropdown-menu top-dropdown-ul" role="menu">
-								<li><a href="password.html">修改密码</a></li>
-								<li><a href="userdata.html">个人资料</a></li>
-								<li><a href="upload.html">上传头像</a></li>
-								<li><a href="address.html">收货管理	</a></li>
-								<li><a href="delaccount.html" >注销账号</a></li>
+						<li><a href="orders.html"><span class="fa fa-file-text"></span>&nbsp;订单</a></li>
+						<li class="li-split">|</li>
+						<li><a href="cart.html"><span class="fa fa-cart-plus"></span>&nbsp;购物车</a></li>
+						<li class="li-split">|</li>
+						<li>
+							<!--下列列表按钮 ：管理-->
+							<div class="btn-group">
+								<button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+									<span id="top-dropdown-btn"><span class="fa fa-gears"></span>&nbsp;管理 <span class="caret"></span></span>
+								</button>
+								<ul class="dropdown-menu top-dropdown-ul" role="menu">
+									<li><a href="password.html">修改密码</a></li>
+									<li><a href="userdata.html">个人资料</a></li>
+									<li><a href="upload.html">上传头像</a></li>
+									<li><a href="address.html">收货管理	</a></li>
+									<li><a href="delaccount.html" >注销账号</a></li>
 
-							</ul>
-						</div>
-					</li>
-					<li class="li-split">|</li>
-					<li><a id="denglu" href="login.html"><span class="fa fa-user"></span>&nbsp;登录</a></li>
-				</ul>
+								</ul>
+							</div>
+						</li>
+						<li class="li-split">|</li>
+						<li><a id="denglu" href="login.html"><span class="fa fa-user"></span>&nbsp;登录</a></li>
+					</ul>
+				</div>
 			</div>
-		</div>
-	</header>
+		</header>
 		<!--导航 -->
 		<!--分割导航和顶部-->
 		<div class="row top-nav">
@@ -102,42 +102,61 @@
 		<!--头部结束-->
 		<!--导航结束-->
 		<div class="container">
-			<div class="col-md-offset-1 col-md-10">
-				<div class="col-md-4">
-					<div class="col-md-12 order-bar-undo">
-						1.确认订单信息
-						<span class="pull-right"><span class="fa fa-chevron-right"></span></span>
+			<div class="col-md-2">
+				<!--左侧导航开始-->
+				<div class="panel-group" id="accordion">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<!--主选项：我的订单-->
+							<p class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">我的订单</a>
+							</p>
+						</div>
+						<div id="collapseOne" class="panel-collapse collapse">
+							<div class="panel-body">
+								<div><a href="orders.html">全部订单</a></div>
+								<div><a href="orders.html">待付款</a></div>
+								<div><a href="orders.html">待收货</a></div>
+								<div><a href="orders.html">待评价</a></div>
+								<div><a href="orders.html">退货退款</a></div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<!--主选项：资料修改-->
+							<p class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">资料修改</a>
+							</p>
+						</div>
+						<div id="collapseTwo" class="panel-collapse collapse in">
+							<div class="panel-body">
+								<div><a href="password.html">修改密码</a></div>
+								<div><a href="userdata.html">个人资料</a></div>
+								<div><a href="upload.html">上传头像</a></div>
+								<div><a href="address.html">收货管理</a></div>
+								<div><a href="delaccount.html" ><b>注销账号</b></a></div>
+
+							</div>
+						</div>
 					</div>
 				</div>
-				<div class="col-md-4">
-					<div class="col-md-12 order-bar-undo">
-						2.在线支付
-						<span class="pull-right"><span class="fa fa-chevron-right"></span></span>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="col-md-12 order-bar-active">
-						3.付款成功
-					</div>
-				</div>
-				<div class="col-md-12">
-					<form role="form">
-						<div class="form-group">
-							<label for="name">
-								<p>支付结果：</p>
-							</label>
-							<div>订单号：1101000301，支付金额¥5298，收款方圆心电脑商城</div>
-							<hr/>
-							<div class="text-center pay-res">
-								<span class="fa fa-check-square-o pay-res-icon"></span>支付成功
-							</div>
-							<div class="text-center">
-								圆心电脑商城不会以系统异常、订单升级为由，要求你点击任何链接进行退款操作
-							</div>
-							<div class="pay-bar">
-								<a href="orders.html">查看订单</a>
-							</div>
-					</form>
+				<!--左侧导航结束-->
+			</div>
+			<div class="col-md-10">
+				<div class="panel panel-default">
+					<ul class="nav nav-tabs">
+						<li><a href="password.html">修改密码</a></li>
+						<li><a href="userdata.html">个人资料</a></li>
+						<li><a href="upload.html">上传头像</a></li>
+						<li ><a href="address.html">收货管理</a></li>
+						<li class="active"><a href="#" >注销账号</a></li>
+
+					</ul>
+					<div class="panel-body">
+						<!--新增收货地址表单开始-->
+						<button id="delete-account-btn" class="btn btn-danger">删除账号</button>
+
 					</div>
 				</div>
 			</div>
@@ -227,6 +246,34 @@
 			</div>
 		</footer>
 		<!--页脚结束-->
+        <script>
+			document.getElementById('delete-account-btn').addEventListener('click', function() {
+				// 显示确认对话框
+				if (confirm("确定要删除账号吗？此操作不可恢复！")) {
+					// 发送 AJAX 请求删除账号
+					$.ajax({
+						url: '/users/deleteAccount', // 替换为你的删除请求接口
+						type: 'POST',
+						dataType: 'JSON',
+						success: function(response) {
+							if (response.state === 200) {
+								alert("账号已成功删除");
+								window.location.href = 'web/index.html'; // 删除成功后重定向到主页
+							} else {
+								alert("删除账号失败: " + response.message);
+							}
+						},
+						error: function(xhr) {
+							alert("删除账号时发生错误: " + xhr.statusText);
+						}
+					});
+				} else {
+					// 用户取消删除
+					alert("删除操作已取消");
+				}
+			});
+
+		</script>
 	</body>
 
 </html>

@@ -69,4 +69,6 @@ public interface UserMapper {
                               String avatar,
                               String modifiedUser,
                               Date modifiedTime);
+
+    Integer updateIsDeleteByUid(Integer uid);
 }
