@@ -20,47 +20,57 @@
 		<link rel="stylesheet" type="text/css" href="../css/top.css" />
 		<link rel="stylesheet" type="text/css" href="../css/footer.css" />
 		<link rel="stylesheet" type="text/css" href="../css/order.css" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+		<script>
+			window.onload = function() {
+				let username= sessionStorage.getItem('username');
+				if(username==null)console.log("username is null");
+				if(username!=null)
+				{
+					document.getElementById("denglu").innerHTML=`<span class="fa fa-user"></span>${username}`;
+				}
+			}
+		</script>
 	</head>
 
 	<body>
-		<!--头部-->
-		<header class="header">
-			<!--电脑商城logo-->
-			<div class="row">
-				<div class="col-md-3">
-					<a href="index.html">
-						<img src="../images/index/stumalllogo.png" />
-					</a>
-				</div>
-				<!--快捷选项-->
-				<div class="col-md-9 top-item">
-					<ul class="list-inline pull-right">
-						<li><a href="favorites.html"><span class="fa fa-heart"></span>&nbsp;收藏</a></li>
-						<li class="li-split">|</li>
-						<li><a href="orders.html"><span class="fa fa-file-text"></span>&nbsp;订单</a></li>
-						<li class="li-split">|</li>
-						<li><a href="cart.html"><span class="fa fa-cart-plus"></span>&nbsp;购物车</a></li>
-						<li class="li-split">|</li>
-						<li>
-							<!--下列列表按钮 ：管理-->
-							<div class="btn-group">
-								<button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
-									<span id="top-dropdown-btn"><span class="fa fa-gears"></span>&nbsp;管理 <span class="caret"></span></span>
-								</button>
-								<ul class="dropdown-menu top-dropdown-ul" role="menu">
-									<li><a href="password.html">修改密码</a></li>
-									<li><a href="userdata.html">个人资料</a></li>
-									<li><a href="upload.html">上传头像</a></li>
-									<li><a href="address.html">收货管理	</a></li>
-								</ul>
-							</div>
-						</li>
-						<li class="li-split">|</li>
-						<li><a href="login.html"><span class="fa fa-user"></span>&nbsp;登录</a></li>
-					</ul>
-				</div>
+	<!--头部-->
+	<header class="header">
+		<!--电脑商城logo-->
+		<div class="row">
+			<div class="col-md-3">
+				<a href="index.html">
+					<img src="../images/index/stumalllogo.png" />
+				</a>
 			</div>
-		</header>
+			<!--快捷选项-->
+			<div class="col-md-9 top-item">
+				<ul class="list-inline pull-right">
+
+					<li><a href="orders.html"><span class="fa fa-file-text"></span>&nbsp;订单</a></li>
+					<li class="li-split">|</li>
+					<li><a href="cart.html"><span class="fa fa-cart-plus"></span>&nbsp;购物车</a></li>
+					<li class="li-split">|</li>
+					<li>
+						<!--下列列表按钮 ：管理-->
+						<div class="btn-group">
+							<button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+								<span id="top-dropdown-btn"><span class="fa fa-gears"></span>&nbsp;管理 <span class="caret"></span></span>
+							</button>
+							<ul class="dropdown-menu top-dropdown-ul" role="menu">
+								<li><a href="password.html">修改密码</a></li>
+								<li><a href="userdata.html">个人资料</a></li>
+								<li><a href="upload.html">上传头像</a></li>
+								<li><a href="address.html">收货管理	</a></li>
+							</ul>
+						</div>
+					</li>
+					<li class="li-split">|</li>
+					<li><a id="denglu" href="login.html"><span class="fa fa-user"></span>&nbsp;登录</a></li>
+				</ul>
+			</div>
+		</div>
+	</header>
 		<!--导航 -->
 		<!--分割导航和顶部-->
 		<div class="row top-nav">
@@ -70,11 +80,12 @@
 						<a href="#"></a>
 					</li>
 					<li class="active"><a href="index.html"><span class="fa fa-home"></span></a></li>
-					<li><a href="#">秒杀</a></li>
+					<!--<li><a href="#">秒杀</a></li>
 					<li><a href="#">优惠券</a></li>
 					<li><a href="#">电脑VIP</a></li>
 					<li><a href="#">外卖</a></li>
 					<li><a href="#">超市</a></li>
+-->
 				</ul>
 			</div>
 			<div class="col-md-6">
@@ -92,23 +103,6 @@
 			<div class="col-md-2">
 				<!--左侧导航开始-->
 				<div class="panel-group" id="accordion">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<!--主选项：我的订单-->
-							<p class="panel-title">
-								<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">我的订单</a>
-							</p>
-						</div>
-						<div id="collapseOne" class="panel-collapse collapse in">
-							<div class="panel-body">
-								<div><a href="orders.html"><b>全部订单</b></a></div>
-								<div><a href="orders.html">待付款</a></div>
-								<div><a href="orders.html">待收货</a></div>
-								<div><a href="orders.html">待评价</a></div>
-								<div><a href="orders.html">退货退款</a></div>
-							</div>
-						</div>
-					</div>
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<!--主选项：资料修改-->
@@ -129,7 +123,7 @@
 			</div>
 			<!--左侧导航结束-->
 			<div class="col-md-10">
-				<div class="panel panel-default">
+				<div class="panel panel-default" id="maimai">
 					<div class="panel-heading">
 						<p class="panel-title">
 							订单号：1101000001，下单时间：2018-12-1 17:50:30 ，收货人：八戒
@@ -144,7 +138,7 @@
 									<th width="8%">单价</th>
 									<th width="8%">数量</th>
 									<th width="9%">小计</th>
-									<th width="10%">售后</th>
+									<th width="10%">评论</th>
 									<th width="10%">状态</th>
 									<th width="10%">操作</th>
 								</tr>
@@ -169,7 +163,7 @@
 									<td>¥<span>4696</span></td>
 									<td>2件</td>
 									<td>¥<span>9392</span></td>
-									<td><a href="#">申请售后</a></td>
+									<td><a href="javascript:void(0)">申请售后</a></td>
 									<td>
 										<div>已发货</div>
 										<div><a href="orderInfo.html">订单详情</a></div>
@@ -196,50 +190,37 @@
 						</div>
 					</div>
 				</div>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<p class="panel-title">
-							订单号：1101000301，下单时间：2018-12-2 20:32:17 ， 收货人：八戒
-						</p>
-					</div>
-					<div class="panel-body">
-						<table class="orders-table" width="100%">
-							<thead>
-								<tr>
-									<th width="15%"></th>
-									<th width="30%">商品</th>
-									<th width="8%">单价</th>
-									<th width="8%">数量</th>
-									<th width="9%">小计</th>
-									<th width="10%">售后</th>
-									<th width="10%">状态</th>
-									<th width="10%">操作</th>
-								</tr>
-							</thead>
-							<tbody class="orders-body">
-								<tr>
-									<td><img src="../images/portal/12DELLXPS13-silvery/collect.png" class="img-responsive" /></td>
-									<td>联想(Lenovo)小新Air13 Pro 13.3英寸14.8mm超轻薄笔记本电脑</td>
-									<td>¥<span>5298</span></td>
-									<td>1件</td>
-									<td>¥<span>5298</span></td>
-									<td><a href="#">申请售后</a></td>
-									<td>
-										<div>已发货</div>
-										<div><a href="orderInfo.html">订单详情</a></div>
-									</td>
-									<td><a href="#" class="btn btn-default btn-xs">确认收货</a></td>
-								</tr>
-							</tbody>
-						</table>
-						<div>
-							<span class="pull-right">订单总金额：¥5298</span>
+
+			</div>
+		</div>
+
+
+	<!-- Comment Modal -->
+	<div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="commentModalLabel">发表评论</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form id="commentForm">
+						<div class="form-group">
+							<label for="commentText">评论内容</label>
+							<textarea class="form-control" id="commentText" rows="3" required></textarea>
 						</div>
-					</div>
+						<input type="hidden" id="commentOrderId" pid="productId" />
+						<button type="submit" class="btn btn-primary">提交</button>
+					</form>
 				</div>
 			</div>
 		</div>
-		<!--页脚开始-->
+	</div>
+
+
+	<!--页脚开始-->
 		<div class="clearfix"></div>
 		<footer class="footer">
 			<!-- 品质保障，私人定制等-->
@@ -324,6 +305,160 @@
 			</div>
 		</footer>
 		<!--页脚结束-->
-	</body>
+	<script type="application/javascript">
+		$(document).ready(function() {
+			$("#commentForm").submit(function(event) {
+				event.preventDefault(); // Prevent form from submitting normally
+				var commentText = $("#commentText").val();
+				var orderId = $("#commentOrderId").val();
+				var productId = $("#commentOrderId").attr("pid");
+				// Send comment to the server
+				$.ajax({
+					url: "/orders/addComment",
+					type: "POST",
+					data: {
+						orderId: orderId,
+						productId: productId,
+						content: commentText
+					},
+					success: function(response) {
+						$("#commentModal").modal('hide');
+						alert("评论发布成功！");
+					},
+					error: function(xhr) {
+						alert("发布评论时发生错误，请稍后再试。");
+					}
+				});
+			});
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			showorderList();
+		});
+		function showorderList() {
+			$("#maimai").empty();
+			let uid = sessionStorage.getItem('uid');
+			console.log(uid);
+			$.ajax({
+				url: "/orders/find_by_uid/" + uid,
+				type: "GET",
+				dataType: "JSON",
+				success: function(json) {
+					var list = json.data;
+					for (var i = 0; i < list.length; i++) {
+						(function(i) { // 使用立即执行函数表达式 (IIFE) 来捕获当前索引 i
+							var orderId = list[i].oid;
+							var div = '<div class="panel-heading">\n' +
+							'<p class="panel-title">\n' +
+							'订单号：#{orderId}，下单时间：#{orderTime}， 收货人：#{receiver}</p>\n' +
+							'</div>\n' +
+							'<div class="panel-body">\n' +
+							'<table class="orders-table" width="100%">\n' +
+							'<thead>\n' +
+							'<tr>\n' +
+							'<th width="15%"></th>\n' +
+							'<th width="30%">商品</th>\n' +
+							'<th width="8%">单价</th>\n' +
+							'<th width="8%">数量</th>\n' +
+							'<th width="9%">小计</th>\n' +
+							'<th width="10%">评论</th>\n' +
+							'<th width="10%">状态</th>\n' +
+							'</tr>\n' +
+							'</thead>\n' +
+							'<tbody class="orders-body" id="order_cart' + orderId + '">\n' +
+							'</tbody>\n' +
+							'</table>\n' +
+							'<div>\n' +
+							'<span class="pull-right">订单总金额：¥#{totalprice}</span>\n' +
+							'</div>\n' +
+							'</div>\n';
+
+							div = div.replace(/#{orderId}/g, list[i].oid);
+							let date = new Date(list[i].orderTime);
+							let formattedDate = date.getFullYear() + '-' +
+							('0' + (date.getMonth() + 1)).slice(-2) + '-' +
+							('0' + date.getDate()).slice(-2) + ' ' +
+							('0' + date.getHours()).slice(-2) + ':' +
+							('0' + date.getMinutes()).slice(-2) + ':' +
+							('0' + date.getSeconds()).slice(-2);
+							div = div.replace(/#{orderTime}/g, formattedDate);
+							div = div.replace(/#{receiver}/g, list[i].recvName);
+
+							// 通过 showcartList 获取购物车列表后再进行拼接
+							showcartList(list[i].oid, function(cartHtml, orderprice) {
+								div = div.replace(/#{totalprice}/g, orderprice);
+								$("#maimai").append(div); // 先把基础 div 插入页面
+								$("#order_cart" + orderId).append(cartHtml); // 把购物车内容插入到表格中
+							});
+
+						})(i); // 立即执行函数
+					}
+				}
+			});
+		}
+
+
+		//展示购物车列表数据
+		// 展示购物车列表数据
+		function showcartList(oid, callback) {
+
+			$.ajax({
+				url: "/orders/" + oid,
+				type: "GET",
+				dataType: "JSON",
+				success: function(json) {
+					var list = json.data;
+					var cartHtml = ''; // 用于存储拼接的 cart HTML
+					var orderprice=0;
+					for (var i = 0; i < list.length; i++) {
+						var tr = '<tr>\n' +
+						'<td><img src="..#{image}collect.png" class="img-responsive" /></td>\n' +
+						'<td>#{title}</td>\n' +
+						'<td>¥<span id="goodsPrice#{id}">#{Price}</span></td>\n' +
+						'<td>#{num}件</td>\n'+
+						'<td>¥<span>#{totalprice}</span></td>\n'+
+						'<td><div style="display: flex;flex-flow:column wrap; justify-content: space-around; align-items: center;"><button class="btn btn-primary comment-button  " style="flex: 0 1 auto"  data-order-id="#{oid}" product-id="#{pid}">发表评论</button><button class="btn btn-primary review-button " style="flex: 0 1 auto"  product-id="#{pid}">查看评论</button></div class></td>\n' +
+						'<td>\n'+
+						'<div>已发货</div>\n'+
+						'</td>\n'+
+						'<td><a href="javascript:void(0)" class="btn btn-default btn-xs">确认收货</a></td>\n'+
+						'</tr>';
+
+						tr = tr.replace(/#{id}/g, list[i].id)
+							.replace(/#{image}/g, list[i].image)
+							.replace(/#{title}/g, list[i].title)
+							.replace(/#{Price}/g, list[i].price)
+							.replace(/#{num}/g, list[i].num)
+							.replace(/#{totalprice}/g, list[i].price * list[i].num)
+							.replace(/#{oid}/g, list[i].oid)
+							.replace(/#{pid}/g, list[i].pid);
+						cartHtml += tr; // 拼接所有商品的 HTML
+						orderprice += list[i].price * list[i].num; // 计算总价
+					}
+
+					// 返回拼接好的购物车HTML和总价给回调函数
+					callback(cartHtml, orderprice);
+					$(".comment-button").click(function() {
+						var orderId = $(this).data("order-id");
+						$("#commentOrderId").val(orderId);
+						let pid = $(this).attr("product-id");
+						$("#commentOrderId").attr("pid",pid );
+						$("#commentModal").modal('show');
+					});
+					$(".review-button").click(function() {
+						var productId = $(this).attr("product-id");
+						window.location.href = "/web/product.html?id=" + productId;
+					});
+				},
+				error: function(xhr) {
+					alert("加载订单列表数据时产生未知的异常 " + xhr.status);
+				}
+			});
+		}
+
+	</script>
+
+		</body>
 
 </html>

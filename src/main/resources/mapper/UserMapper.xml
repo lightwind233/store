@@ -29,11 +29,11 @@
     -->
     <insert id="insert" useGeneratedKeys="true" keyProperty="uid">
         insert into t_user(
-        username,`password`,salt,phone,email,gender,avatar,is_delete,
-        created_user,created_time,modified_user,modified_time
+            username,`password`,salt,phone,email,gender,avatar,is_delete,
+            created_user,created_time,modified_user,modified_time
         ) values (
-        #{username},#{password},#{salt},#{phone},#{email},#{gender},#{avatar},#{isDelete},
-        #{createdUser},#{createdTime},#{modifiedUser},#{modifiedTime}
+            #{username},#{password},#{salt},#{phone},#{email},#{gender},#{avatar},#{isDelete},
+            #{createdUser},#{createdTime},#{modifiedUser},#{modifiedTime}
         )
     </insert>
 
@@ -49,9 +49,9 @@
 
     <update id="updatePasswordByUid">
         update t_user set
-        `password`=#{password},
-        modified_user=#{modifiedUser},
-        modified_time=#{modifiedTime}
+          `password`=#{password},
+          modified_user=#{modifiedUser},
+          modified_time=#{modifiedTime}
         where uid=#{uid}
     </update>
 
@@ -62,23 +62,23 @@
     <update id="updateInfoByUid">
         update t_user
         set
-        <!--if是条件判断标签,属性test接受的是一个返回值为boolean类型的条件,
-        如果test条件的结果为true则执行if标签内部的语句,注意逗号也要在标签内-->
-        <if test="phone!=null">phone = #{phone},</if>
-        <if test="email!=null">email = #{email},</if>
-        <if test="gender!=null">gender = #{gender},</if>
-        modified_user = #{modifiedUser},
-        modified_time = #{modifiedTime}
+            <!--if是条件判断标签,属性test接受的是一个返回值为boolean类型的条件,
+            如果test条件的结果为true则执行if标签内部的语句,注意逗号也要在标签内-->
+            <if test="phone!=null">phone = #{phone},</if>
+            <if test="email!=null">email = #{email},</if>
+            <if test="gender!=null">gender = #{gender},</if>
+            modified_user = #{modifiedUser},
+            modified_time = #{modifiedTime}
         where uid=#{uid}
     </update>
 
     <update id="updateAvatarByUid">
         update t_user
         set
-        avatar = #{avatar},
-        modified_user = #{modifiedUser},
-        modified_time = #{modifiedTime}
+            avatar = #{avatar},
+            modified_user = #{modifiedUser},
+            modified_time = #{modifiedTime}
         where
-        uid = #{uid}
+            uid = #{uid}
     </update>
 </mapper>

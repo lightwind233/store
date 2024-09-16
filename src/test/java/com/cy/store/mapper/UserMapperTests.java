@@ -3,7 +3,6 @@ package com.cy.store.mapper;
 import com.cy.store.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -21,7 +20,6 @@ import java.util.Date;
  * 4.单元测试方法的特点:必须被@Test注解修饰;返回值类型必须是void;方法的参数列表不指定任何类型;方法的访问修饰符必须是public
  */
 @RunWith(SpringRunner.class)
-@MapperScan("com.cy.store.mapper")//指定项目中MAPPER接口路径位置，启动时自动加载接口文件
 public class UserMapperTests {
 
     @Autowired
@@ -30,11 +28,48 @@ public class UserMapperTests {
     @Test
     public void insert() {
         User user = new User();
-        user.setUsername("123");
+        user.setUsername("张6");
         user.setPassword("123456");
         Integer rows = userMapper.insert(user);
         System.out.println(rows);
     }
 
+    @Test
+    public void findByUsername() {
+        User user = userMapper.findByUsername("张三");
+        System.out.println(user);
+    }
 
+    @Test
+    public void updatePasswordByUid(){
+        userMapper.updatePasswordByUid(
+                10,
+                "321",
+                "管理员",
+                new Date());
+    }
+
+    @Test
+    public void findByUid(){
+        System.out.println(userMapper.findByUid(10));
+    }
+
+    @Test
+    public void updateInfoByUid() {
+        User user = new User();
+        user.setUid(11);
+        user.setPhone("13333688");
+        user.setEmail("1454@qq.com");
+        user.setGender(1);
+        userMapper.updateInfoByUid(user);
+    }
+
+    @Test
+    public void updateAvatarByUid() {
+        userMapper.updateAvatarByUid(
+                11,
+                "abc",
+                "mxy",
+                new Date());
+    }
 }
