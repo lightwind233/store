@@ -53,5 +53,7 @@ public interface IUserService {
     void changeAvatar(Integer uid,
                       String avatar,
                       String username);//业务层一般叫username而不叫modifiedUser,因
-                                        // 为业务层并没有直接和数据库关联
+
+    void deleteAccount(Integer uid);
+    // 为业务层并没有直接和数据库关联
 }

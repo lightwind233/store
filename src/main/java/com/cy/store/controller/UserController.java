@@ -25,6 +25,15 @@ public class UserController extends BaseController {
     @Autowired
     private IUserService userService;
 
+    @RequestMapping("/deleteAccount")
+    public JsonResult<Void> deleteAccount(HttpSession session) {
+        Integer uid = getUidFromSession(session);
+        String username = getUsernameFromSession(session);
+        session.removeAttribute("uid");
+        session.removeAttribute("username");
+        userService.deleteAccount(uid);
+        return new JsonResult<>(OK);
+    }
     @RequestMapping("reg")
     //@ResponseBody //表示此方法的响应结果以json格式进行数据的响应给到前端
     public JsonResult<Void> reg(User user) {

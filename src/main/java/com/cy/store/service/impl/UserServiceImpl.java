@@ -181,6 +181,17 @@ public class UserServiceImpl implements IUserService {
         }
     }
 
+    @Override
+    public void deleteAccount(Integer uid) {
+        //查询当前的用户数据是否存在
+        User result = userMapper.findByUid(uid);
+        if (result == null || result.getIsDelete() == 1) {
+            throw new UsernameNotFoundException("用户数据不存在");
+        }
+       userMapper.updateIsDeleteByUid(uid);
+
+    }
+
     /**
      * 定义一个md5算法的加密处理
      */

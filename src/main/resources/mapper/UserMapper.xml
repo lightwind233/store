@@ -27,6 +27,9 @@
     <!--useGeneratedKeys="true"表示开启某个字段的值递增(大部分都是主键递增)
         keyProperty="uid"表示将表中哪个字段进行递增
     -->
+    <delete id="updateIsDeleteByUid">
+        delete from t_user where uid=#{uid}
+    </delete>
     <insert id="insert" useGeneratedKeys="true" keyProperty="uid">
         insert into t_user(
             username,`password`,salt,phone,email,gender,avatar,is_delete,
