@@ -21,5 +21,5 @@ public interface ProductMapper {
 
     List<Comment> findComments(Integer id);
 
-    List<Comment> findUserComments(Integer uid, Integer productId);
+    List<Comment> findUserComments(Integer uid, Integer orderId);
 }

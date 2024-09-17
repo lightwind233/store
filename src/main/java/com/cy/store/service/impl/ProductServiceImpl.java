@@ -53,8 +53,8 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public List<Comment> findUserComments(Integer uid, Integer productId) {
-        List<Comment> list = productMapper.findUserComments(uid,productId);
+    public List<Comment> findUserComments(Integer uid, Integer orderId) {
+        List<Comment> list = productMapper.findUserComments(uid,orderId);
 
         return list;
     }
