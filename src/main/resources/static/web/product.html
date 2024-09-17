@@ -393,9 +393,20 @@
 						if (response.state == 200) {
 							// 清空当前评论内容
 							$('#panel-comment').empty();
-
+							function renderStars(rating) {
+								let stars = '';
+								for (let i = 1; i <= 5; i++) {
+									if (i <= rating) {
+										stars += '<span style="color: gold;">★</span>'; // Filled star
+									} else {
+										stars += '<span style="color: lightgray;">★</span>'; // Empty star
+									}
+								}
+								return stars;
+							}
 							// 遍历并添加评论到页面
 							response.data.forEach(function(comment) {
+								let stars=renderStars(comment.rate);
 								var commentHtml = `
                         <div class="comment">
                             <div class="row">
@@ -404,7 +415,8 @@
                                         <strong>${comment.username}</strong> <small>${comment.updatedTime}</small>
                                     </div>
                                     <div class="comment-body">
-                                        <p>${comment.content}</p>
+                                        <p>该用户评价: <span class="star-rating" data-rating="${comment.rate}">${stars}</span></p>
+                						<p>${comment.content}</p>
                                     </div>
                                 </div>
                             </div>
@@ -432,7 +444,7 @@
                     dataType: "JSON",
                     success: function(json) {
                         if (json.state == 200) {
-
+							alert("增加成功!");
                         } else {
                             alert("增加失败！" + json.message);
                         }
@@ -445,6 +457,8 @@
             });
 
 
+
+			// Find all elements with class 'star-rating' and render stars
 
         </script>
 	</body>

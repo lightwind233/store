@@ -34,9 +34,9 @@ public class OrderServiceImpl implements IOrderService {
     private IUserService userService;
 
     @Override
-    public void addComment(Integer orderId,Integer productId, Integer uid, String content) {
+    public void addComment(Integer orderId,Integer productId, Integer uid, String content,Integer rate) {
         // TODO Auto-generated method stub
-         orderMapper.addComment(orderId, productId,uid, content);
+         orderMapper.addComment(orderId, productId,uid, content,rate);
     }
     @Override
     public Order create(Integer aid, Integer[] cids, Integer uid, String username) {

@@ -20,4 +20,6 @@ public interface ProductMapper {
     Product findById(Integer id);
 
     List<Comment> findComments(Integer id);
+
+    List<Comment> findUserComments(Integer uid, Integer productId);
 }

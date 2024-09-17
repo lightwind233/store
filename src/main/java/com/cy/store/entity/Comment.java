@@ -18,9 +18,20 @@ public class Comment extends BaseEntity {
                 ", pId=" + pId +
                 ", uid=" + uid +
                 ", content='" + content + '\'' +
+                ", rate=" + rate +
                 ", username='" + username + '\'' +
                 ", updatedTime=" + updatedTime +
                 '}';
+    }
+
+    private  Integer rate;
+
+    public Integer getRate() {
+        return rate;
+    }
+
+    public void setRate(Integer rate) {
+        this.rate = rate;
     }
 
     public String getUsername() {

@@ -12,7 +12,7 @@ public interface OrderMapper {
      */
     Integer insertOrder(Order order);
 
-    void addComment(@Param("orderId")Integer orderId,@Param("pid") Integer productId, @Param("uid")Integer uid,@Param("content") String content);
+    void addComment(@Param("orderId")Integer orderId, @Param("pid") Integer productId, @Param("uid")Integer uid, @Param("content") String content,@Param("rate") Integer rate);
     /**
      * 插入某一个订单中商品数据
      * @param orderItem 订单中商品数据

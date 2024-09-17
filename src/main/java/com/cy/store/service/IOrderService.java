@@ -12,5 +12,5 @@ public interface IOrderService {
 
     List<OrderItem> findByoid(Integer oid);
 
-    void addComment(Integer orderId,Integer productId, Integer uid, String content);
+    void addComment(Integer orderId,Integer productId, Integer uid, String content,Integer rate);
 }
