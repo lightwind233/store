@@ -20,6 +20,16 @@
 		<link rel="stylesheet" type="text/css" href="../css/webindex.css" />
 		<link rel="stylesheet" type="text/css" href="../css/footer.css" />
 		<link rel="stylesheet" type="text/css" href="../css/top.css" />
+		<script>
+			window.onload = function() {
+				let username= sessionStorage.getItem('username');
+				if(username==null)console.log("username is null");
+				if(username!=null)
+				{
+					document.getElementById("denglu").innerHTML=`<span class="fa fa-user"></span>${username}`;
+				}
+			}
+		</script>
 	</head>
 
 	<body>
@@ -35,8 +45,7 @@
 				<!--快捷选项-->
 				<div class="col-md-9 top-item">
 					<ul class="list-inline pull-right">
-						<li><a href="favorites.html"><span class="fa fa-heart"></span>&nbsp;收藏</a></li>
-						<li class="li-split">|</li>
+
 						<li><a href="orders.html"><span class="fa fa-file-text"></span>&nbsp;订单</a></li>
 						<li class="li-split">|</li>
 						<li><a href="cart.html"><span class="fa fa-cart-plus"></span>&nbsp;购物车</a></li>
@@ -52,11 +61,13 @@
 									<li><a href="userdata.html">个人资料</a></li>
 									<li><a href="upload.html">上传头像</a></li>
 									<li><a href="address.html">收货管理	</a></li>
+									<li><a href="delaccount.html" >注销账号</a></li>
+
 								</ul>
 							</div>
 						</li>
 						<li class="li-split">|</li>
-						<li><a href="login.html"><span class="fa fa-user"></span>&nbsp;登录</a></li>
+						<li><a  id="denglu" href="login.html"><span class="fa fa-user"></span>登录</a></li>
 					</ul>
 				</div>
 			</div>
@@ -70,27 +81,21 @@
 						<a href="#"></a>
 					</li>
 					<li class="active"><a href="index.html"><span class="fa fa-home"></span></a></li>
-					<li><a href="#">秒杀</a></li>
+					<!--<li><a href="#">秒杀</a></li>
 					<li><a href="#">优惠券</a></li>
 					<li><a href="#">电脑VIP</a></li>
 					<li><a href="#">外卖</a></li>
 					<li><a href="#">超市</a></li>
+-->
 				</ul>
 			</div>
-			<div class="col-md-6">
-				<form action="search.html" class="form-inline pull-right" role="form">
-					<div class="form-group">
-						<input type="text" class="form-control" id="search" name="search" placeholder="请输入商品名称进行搜索">
-					</div>
-					<button type="submit" class="btn btn-default btn-sm"><span class="fa fa-search"></span></button>
-				</form>
-			</div>
+
 		</div>
 		<!--头部结束-->
 		<!--导航结束-->
 		<div class="container">
 			<div class="row">
-				<div class="col-md-2" id="indexMenu">
+				<!--<div class="col-md-2" id="indexMenu">
 					<ul class="index-menu">
 					</ul>
 					<div id="showIndex">
@@ -102,7 +107,7 @@
 						<ul class="third-menu">
 						</ul>
 					</div>
-				</div>
+				</div>-->
 				<div class="col-md-10">
 					<div id="myCarousel" class="carousel slide">
 						<!-- 轮播（Carousel）指标 -->
@@ -146,39 +151,10 @@
 			
 			<!--推荐栏目-->
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<p class="panel-title">新到好货</p>
-						</div>
-						<div class="panel-body panel-item">
-							<div class="col-md-12">
-								<div class="col-md-7 text-row-2"><a href="product.html">齐心（COMIX）C5902 A5优品商务笔记本子记事本日记本122张</a></div>
-								<div class="col-md-2">¥18</div>
-								<div class="col-md-3"><img src="../images/portal/02COMIXC5902A5122blue/collect.png" class="img-responsive" /></div>
-							</div>
-							<div class="col-md-12">
-								<div class="col-md-7  text-row-2"><a href="product.html">得力（deli）1548A商务办公桌面计算器 太阳能双电源</a></div>
-								<div class="col-md-2">¥50</div>
-								<div class="col-md-3"><img src="../images/portal/002calculator1548A/collect.png" class="img-responsive" /></div>
-							</div>
-							<div class="col-md-12">
-								<div class="col-md-7 text-row-2"><a href="product.html">戴尔(DELL)XPS13-9360-R1609 13.3</a></div>
-								<div class="col-md-2">¥6299</div>
-								<div class="col-md-3"><img src="../images/portal/12(DELL)XPS13gold/collect.png" class="img-responsive" /></div>
-							</div>
-							<div class="col-md-12">
-								<div class="col-md-7 text-row-2"><a href="product.html">联想（Lenovo）IdeaPad310高配版</a></div>
-								<div class="col-md-2">¥5298</div>
-								<div class="col-md-3"><img src="../images/portal/13LenovoIdeaPad310_black/collect.png" class="img-responsive" /></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<p class="panel-title">热销排行</p>
+							<p class="panel-title">热销商品</p>
 						</div>
 						<div id="hot-list" class="panel-body panel-item">
 							<div class="col-md-12">
@@ -290,6 +266,38 @@
 			</div>
 		</footer>
 		<!--页脚结束-->
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                showHotList();
+            });
+
+            function showHotList() {
+                $("#hot-list").empty();
+                $.ajax({
+                    url: "/products/hot_list",
+                    type: "GET",
+                    success: function(json) {
+                        var list = json.data;
+                        for (var i = 0; i < list.length; i++) {
+                            console.log(list[i].title);//调试用
+                            var html = '<div class="col-md-12">'
+                                + '<div class="col-md-7 text-row-2"><a href="product.html?id=#{id}">#{title}</a></div>'
+                                + '<div class="col-md-2">¥#{price}</div>'
+                                + '<div class="col-md-3"><img src="..#{image}collect.png" class="img-responsive" /></div>'
+                                + '</div>';
+
+                            html = html.replace(/#{id}/g, list[i].id);
+                            html = html.replace(/#{title}/g, list[i].title);
+                            html = html.replace(/#{price}/g, list[i].price);
+                            html = html.replace(/#{image}/g, list[i].image);
+
+                            $("#hot-list").append(html);
+                        }
+                    }
+                });
+            }
+        </script>
 	</body>
 
 </html>

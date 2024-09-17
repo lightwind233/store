@@ -17,6 +17,16 @@
 		<link rel="stylesheet" href="../bootstrap3/font-awesome-4.7.0/css/font-awesome.css" />
 		<link rel="stylesheet" type="text/css" href="../css/layout.css" />
 		<link rel="stylesheet" type="text/css" href="../css/footer.css" />
+		<script>
+			window.onload = function() {
+				let username= sessionStorage.getItem('username');
+				if(username==null)console.log("username is null");
+				if(username!=null)
+				{
+					document.getElementById("denglu").innerHTML=`<span class="fa fa-user"></span>${username}`;
+				}
+			}
+		</script>
 	</head>
 	<body>
 		<!--页脚开始-->
@@ -54,6 +64,8 @@
 							<li><a href="#">新手指南</a></li>
 							<li><a href="#">服务保障</a></li>
 							<li><a href="#">常见问题</a></li>
+							<li><a href="delaccount.html" >注销账号</a></li>
+
 						</ul>
 					</div>
 					<div class="col-md-4">

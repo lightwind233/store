@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.store.mapper.ProductMapper">
+    <resultMap id="ProductEntityMap" type="com.cy.store.entity.Product">
+        <id column="id" property="id"/>
+        <result column="category_id" property="categoryId"/>
+        <result column="item_type" property="itemType"/>
+        <result column="sell_point" property="sellPoint"/>
+        <result column="created_user" property="createdUser"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="modified_user" property="modifiedUser"/>
+        <result column="modified_time" property="modifiedTime"/>
+    </resultMap>
+    <resultMap id="CommentMap" type="com.cy.store.entity.Comment">
+        <id column="comment_id" property="commentId"/>
+        <result column="order_id" property="orderId"/>
+        <result column="pid" property="pId"/>
+        <result column="uid" property="uid"/>
+        <result column="content" property="content"/>
+        <result property="username" column="username"/> <!-- 映射 username -->
+        <result column="updated_time" property="updatedTime"/>
+        <result column="rate" property="rate"/>
+    </resultMap>
+    <select id="findComments" resultMap="CommentMap">
+        SELECT c.comment_id, c.order_id, c.pid, c.uid, c.content, u.username, c.updated_time,c.rate
+        FROM t_comment c
+                 JOIN t_user u ON c.uid = u.uid
+        where c.pid = #{id}
+    </select>
+    <select id="findUserComments" resultMap="CommentMap">
+        SELECT c.comment_id, c.order_id, c.pid, c.uid, c.content,c.updated_time,c.rate
+        FROM t_comment c
+        where c.pid = #{productId} and c.uid = #{uid}
+    </select>
+    <select id="findHotList" resultMap="ProductEntityMap">
+        select * from t_product where status=1 order by priority desc
+    </select>
+
+    <select id="findById" resultMap="ProductEntityMap">
+        select * from t_product where id=#{id}
+    </select>
+</mapper>

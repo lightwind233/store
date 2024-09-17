@@ -1,6 +1,6 @@
 package com.cy.store.service.ex;
 
-/**登陆异常：密码校验失败的异常*/
+/**密码校验失败的异常*/
 public class PasswordNotMatchException extends ServiceException{
     public PasswordNotMatchException() {
         super();

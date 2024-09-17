@@ -1,6 +1,6 @@
 package com.cy.store.service.ex;
 
-/*用户名占用异常*/
+/**用户名已经被占用的异常*/
 public class UsernameDuplicatedException extends ServiceException{
     public UsernameDuplicatedException() {
         super();
