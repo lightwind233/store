@@ -33,4 +33,12 @@ public class ProductController extends BaseController {
         List<Comment> data = productService.findComments(id);
         return new JsonResult<List<Comment>>(OK,data );
     }
+    @RequestMapping("/{uid}/{productId}/findUserComment")
+    public JsonResult<List<Comment>> findUserComment(@PathVariable("uid") Integer uid,@PathVariable("productId")Integer productId) {
+        List<Comment> data = productService.findUserComments(uid,productId);
+        for(Comment comment:data){
+            System.out.println(comment);
+        }
+        return new JsonResult<List<Comment>>(OK,data );
+    }
 }

@@ -21,12 +21,18 @@
         <result column="content" property="content"/>
         <result property="username" column="username"/> <!-- 映射 username -->
         <result column="updated_time" property="updatedTime"/>
+        <result column="rate" property="rate"/>
     </resultMap>
     <select id="findComments" resultMap="CommentMap">
-        SELECT c.comment_id, c.order_id, c.pid, c.uid, c.content, u.username, c.updated_time
+        SELECT c.comment_id, c.order_id, c.pid, c.uid, c.content, u.username, c.updated_time,c.rate
         FROM t_comment c
                  JOIN t_user u ON c.uid = u.uid
         where c.pid = #{id}
+    </select>
+    <select id="findUserComments" resultMap="CommentMap">
+        SELECT c.comment_id, c.order_id, c.pid, c.uid, c.content,c.updated_time,c.rate
+        FROM t_comment c
+        where c.pid = #{productId} and c.uid = #{uid}
     </select>
     <select id="findHotList" resultMap="ProductEntityMap">
         select * from t_product where status=1 order by priority desc

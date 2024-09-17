@@ -51,4 +51,11 @@ public class ProductServiceImpl implements IProductService {
 
         return list;
     }
+
+    @Override
+    public List<Comment> findUserComments(Integer uid, Integer productId) {
+        List<Comment> list = productMapper.findUserComments(uid,productId);
+
+        return list;
+    }
 }

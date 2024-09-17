@@ -5,9 +5,9 @@
 <mapper namespace="com.cy.store.mapper.OrderMapper">
     <insert id="addComment"  keyProperty="id">
         insert into t_comment (
-            order_id,pid,uid, content, updated_time
+            order_id,pid,uid, content, updated_time,rate
         ) values (
-            #{orderId},#{pid},#{uid},#{content}, now()
+            #{orderId},#{pid},#{uid},#{content}, now(),#{rate}
         )
     </insert>
     <!-- 插入订单数据 -->

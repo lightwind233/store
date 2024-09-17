@@ -54,14 +54,14 @@ public class OrderController extends BaseController {
         return new JsonResult<>(OK,data);
     }
     @RequestMapping("/addComment")
-    public JsonResult<Void> addComment(Integer orderId, Integer productId,String content, HttpSession session) {
+    public JsonResult<Void> addComment(Integer orderId, Integer productId,String content,Integer rate, HttpSession session) {
         //String username = getUsernameFromSession(session);
         Integer uid = getUidFromSession(session);
         if(uid==null)
         {
             throw new UsernameNotFoundException();
         }
-        orderService.addComment(orderId,productId, uid, content);
+        orderService.addComment(orderId,productId, uid, content,rate);
         return new JsonResult<>(OK);
     }
 }
